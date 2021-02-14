@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Output, EventEmitter } from '@angular/core';
 
 export interface MakeGroup {
   letter: string;
@@ -14,12 +15,15 @@ export const _filter = (opt: string[], value: string): string[] => {
   return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
 };
 
+
 @Component({
   selector: 'app-make',
   templateUrl: './make.component.html',
   styleUrls: ['./make.component.scss']
 })
 export class MakeComponent implements OnInit {
+
+  @Output() makeEvent= new EventEmitter<string>();
 
   makeForm: FormGroup = this._formBuilder.group({
     makeGroup: '',
@@ -103,6 +107,10 @@ export class MakeComponent implements OnInit {
     }
 
     return this.makesForm;
+  }
+
+  public emitMakeValue(make: string): void {
+    this.makeEvent.emit(make);
   }
 
 }

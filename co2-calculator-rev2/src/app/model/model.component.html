@@ -1,0 +1,19 @@
+<div class="input-section">
+    <!-- Model -->
+    <form class="example-form">
+        <mat-form-field appearance="fill" class="spaceBetween">
+          <mat-label>Model</mat-label>
+          <input type="text"
+                 placeholder="Toyota"
+                 aria-label="Model"
+                 matInput
+                 [formControl]="modelControl"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let model of filteredOptions | async" [value]="model">
+              {{model}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+</div>

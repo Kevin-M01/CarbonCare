@@ -173,7 +173,13 @@ Fastify.post('/api/calculate', async function (req, reply) {
     }
 })
 
-Fastify.listen(3000, (err, address) => {
+Fastify.get('/', function (req, reply) {
+    return reply.send({
+        hello: 'world'
+    })
+})
+
+Fastify.listen(process.env.PORT || 5000, (err, address) => {
     if (err) throw err
     Fastify.log.info(`server listening on ${address}`)
 })

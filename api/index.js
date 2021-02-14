@@ -20,8 +20,7 @@ client.connect();
 
 const schema = `
     type CalculatedEmissions {
-        make: String
-        model: String
+        name: String
         score: Int 
     }
 
@@ -39,7 +38,7 @@ const resolvers = {
             carModel,
             carPool
         }) => {
-            let distance = 0;
+            let distance = 500;
             try {
                 let options = {
                     method: "GET",
@@ -56,6 +55,7 @@ const resolvers = {
                 };
 
                 let response = await got(options);
+                console.log (response.body)
 
                 switch (response.statusCode) {
                     case 200:
@@ -69,7 +69,11 @@ const resolvers = {
                 // Error Handling
             }
             let tempEmissionData = null;
-            if (carPool == "false") {
+            console.log (distance)
+            console.log (carPool)
+            console.log (carPool == false)
+            console.log (carPool == "false")
+            if (carPool != "false") {
                 tempEmissionData = await client.query(`
                 WITH cte_1 AS (
                     SELECT 
@@ -149,6 +153,7 @@ const resolvers = {
                     value: parseInt(tempEmissionData.rows[x].emission_in_grams)
                 });
             }
+            console.log (tempData)
             return tempData;
         }
     }
@@ -166,7 +171,7 @@ Fastify.register(require('fastify-rate-limit'), {
 
 Fastify.post('/api/calculate', async function (req, reply) {
     try {
-        const query = `{ determineEmissions(address1: "${req.body.address1}" , address2: "${req.body.address2}", carMake: "${req.body.carMake}", carModel: "${req.body.carModel}", carPool: "${req.body.carPool}") {make, model, score} }`
+        const query = `{ determineEmissions(address1: "${req.body.address1}" , address2: "${req.body.address2}", carMake: "${req.body.carMake}", carModel: "${req.body.carModel}", carPool: "${req.body.carPool}") {name, score} }`
         return reply.graphql(query);
     } catch (e) {
         console.log(e)

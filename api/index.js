@@ -20,13 +20,12 @@ client.connect();
 
 const schema = `
     type CalculatedEmissions {
-        make: String
-        model: String
-        score: Int 
+        name: String
+        value: Int 
     }
 
     type Query {
-        determineEmissions(address1: String, address2: String, carMake: String, carModel: String, carPool: Boolean): [CalculatedEmissions]
+        determineEmissions(address1: String, address2: String, carMake: String, carModel: String, carPool: String): [CalculatedEmissions]
     }
 `;
 
@@ -39,7 +38,7 @@ const resolvers = {
             carModel,
             carPool
         }) => {
-            let distance = 0;
+            let distance = 500;
             try {
                 let options = {
                     method: "GET",
@@ -69,7 +68,8 @@ const resolvers = {
                 // Error Handling
             }
             let tempEmissionData = null;
-            if (carPool) {
+
+            if (carPool != "false") {
                 tempEmissionData = await client.query(`
                 WITH cte_1 AS (
                     SELECT 
@@ -149,6 +149,7 @@ const resolvers = {
                     value: parseInt(tempEmissionData.rows[x].emission_in_grams)
                 });
             }
+            console.log (tempData)
             return tempData;
         }
     }
@@ -159,6 +160,10 @@ Fastify.register(mercurius, {
     resolvers
 })
 
+Fastify.register(require('fastify-cors'), { 
+    // put your options here
+  })
+
 Fastify.register(require('fastify-rate-limit'), {
     max: 100,
     timeWindow: '1 minute'
@@ -166,7 +171,7 @@ Fastify.register(require('fastify-rate-limit'), {
 
 Fastify.post('/api/calculate', async function (req, reply) {
     try {
-        const query = `{ determineEmissions(address1: "${req.body.address1}" , address2: "${req.body.address2}", carMake: "${req.body.carMake}", carModel: "${req.body.carModel}", carPool: ${req.body.carPool}) {make, model, score} }`
+        const query = `{ determineEmissions(address1: "${req.body.address1}" , address2: "${req.body.address2}", carMake: "${req.body.carMake}", carModel: "${req.body.carModel}", carPool: "${req.body.carPool}") {name, value} }`
         return reply.graphql(query);
     } catch (e) {
         console.log(e)

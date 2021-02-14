@@ -26,7 +26,7 @@ const schema = `
     }
 
     type Query {
-        determineEmissions(address1: String, address2: String, carMake: String, carModel: String, carPool: Boolean): [CalculatedEmissions]
+        determineEmissions(address1: String, address2: String, carMake: String, carModel: String, carPool: String): [CalculatedEmissions]
     }
 `;
 
@@ -69,7 +69,7 @@ const resolvers = {
                 // Error Handling
             }
             let tempEmissionData = null;
-            if (carPool) {
+            if (carPool == "false") {
                 tempEmissionData = await client.query(`
                 WITH cte_1 AS (
                     SELECT 

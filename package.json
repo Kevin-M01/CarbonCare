@@ -5,12 +5,12 @@
   "main": "./api/index.js",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "cd co2-calculator-rev2 && node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot -prod"
+    "postinstall": "cd co2-calculator-rev2 && ng build --aot -prod"
   },
   "repository": {
     "type": "git",

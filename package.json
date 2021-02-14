@@ -2,9 +2,9 @@
   "name": "co2-calculator",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./api/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./api/index"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/Arnesh-Jairath/co2-calculator/issues"
   },
-  "homepage": "https://github.com/Arnesh-Jairath/co2-calculator#readme"
+  "homepage": "https://github.com/Arnesh-Jairath/co2-calculator#readme",
+  "dependencies": {
+    "fastify": "^3.12.0",
+    "fastify-rate-limit": "^5.0.1",
+    "got": "^11.8.1",
+    "mercurius": "^7.0.0",
+    "pg": "^8.5.1"
+  },
+  "engines": {
+    "node": "15.x"
+  }
 }

@@ -11,6 +11,20 @@ text-align: center;
   margin: auto;
 }
 
-.spaceBetween {
+.space-between {
 padding: 10px;
+}
+.input {
+  float:left;
+}
+
+.even-split {
+  width: 50%;  
+  float: left;
+  padding: 20px;
+  // border: 2px solid red;
+}
+
+.graph {
+  float:left;
 }

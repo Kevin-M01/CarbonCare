@@ -1,4 +1,10 @@
+import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+
+export interface Data {
+  name: string,
+  value: number
+}
 
 @Component({
   selector: 'app-graph',
@@ -6,18 +12,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./graph.component.scss']
 })
 export class GraphComponent implements OnInit {
+  // Get APIs output here
+  @Input() outputData: Data[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  // Get APIs output here
-  outputData = [
-    { name: "Mobiles", value: 105000 },
-    { name: "Laptop", value: 55000 },
-    { name: "AC", value: 15000 },
-    { name: "Headset", value: 150000 },
-    { name: "Fridge", value: 20000 }
-  ];
+
 }

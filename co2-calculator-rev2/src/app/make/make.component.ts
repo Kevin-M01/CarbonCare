@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { Output, EventEmitter } from '@angular/core';
+import { Output, Input, EventEmitter } from '@angular/core';
 
 export interface MakeGroup {
   letter: string;
@@ -22,8 +22,8 @@ export const _filter = (opt: string[], value: string): string[] => {
   styleUrls: ['./make.component.scss']
 })
 export class MakeComponent implements OnInit {
-
-  @Output() makeEvent= new EventEmitter<string>();
+  @Output() makeEvent: EventEmitter<string> = new EventEmitter<string>();
+  carMake: string = "";
 
   makeForm: FormGroup = this._formBuilder.group({
     makeGroup: '',
@@ -96,6 +96,7 @@ export class MakeComponent implements OnInit {
         startWith(''),
         map(value => this._filterGroup(value))
       );
+      this.setMakeValue("hi");
   }
 
   // actually filters the group name and returns the list of make
@@ -109,8 +110,12 @@ export class MakeComponent implements OnInit {
     return this.makesForm;
   }
 
-  public emitMakeValue(make: string): void {
-    this.makeEvent.emit(make);
+  public setMakeValue(make: string) {
+    this.carMake = make;
+    console.log(this.makesForm.values);
   }
 
+  public emitMakeValue(): void {
+    console.log(this.carMake);
+  }
 }

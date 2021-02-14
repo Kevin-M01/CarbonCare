@@ -7,7 +7,7 @@
                  placeholder="Toyota"
                  aria-label="Model"
                  matInput
-                 [formControl]="makeControl"
+                 [formControl]="modelControl"
                  [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let model of filteredOptions | async" [value]="model">

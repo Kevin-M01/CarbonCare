@@ -1,9 +1,8 @@
-<br>
 <h1 class="centreText">Results</h1>
 <ngx-charts-bar-vertical 
-    [view]="[750,400]"
+    [view]="[500,500]"
     [results]="outputData"
-    [xAxisLabel]="'Vehicles (Make, Model)'"    
+    [xAxisLabel]="'Vehicles'"    
     [yAxisLabel]="'Emissions CO2 (g/km)'"
     [legend]="false"
     [showXAxisLabel]="true"
@@ -11,6 +10,7 @@
     [xAxis]="true"
     [yAxis]="true"
     [gradient]="true"
-    [roundEdges]="true"
+    [roundEdges]="true"   
+    [showDataLabel]="true" 
     >
 </ngx-charts-bar-vertical>

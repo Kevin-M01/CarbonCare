@@ -19,6 +19,8 @@ import { MatInputModule  } from '@angular/material/input';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { GraphComponent } from './graph/graph.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { GraphComponent } from './graph/graph.component';
     MatRadioModule,
     MatIconModule,
     MatAutocompleteModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

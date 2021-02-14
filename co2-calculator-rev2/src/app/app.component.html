@@ -1,41 +1,75 @@
-<div class="input-section">
-  <form>
-    <app-make (makeEvent)="setMakeValue($event)"></app-make>
-    <app-model></app-model>
+<div class="main">
+<div class="input">
+
+    <div class="input-section">
+          <mat-form-field appearance="fill" class="spaceBetween">
+            <mat-label>Make</mat-label>
+            <input type="text"
+                  placeholder="Toyota"
+                  aria-label="Make"
+                  matInput
+                  [formControl]="makeControl"
+                  [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let make of filteredMakeOptions | async " [value]="make">
+                  {{make}}
+                </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+    </div>
+
+  <div class="input-section">
+    <!-- Model -->
+        <mat-form-field appearance="fill" class="spaceBetween">
+          <mat-label>Model</mat-label>
+          <input type="text"
+                 aria-label="Model"
+                 placeholder="Corolla"
+                 matInput
+                 [formControl]="modelControl"
+                 [matAutocomplete]="auto2">
+          <mat-autocomplete #auto2="matAutocomplete">
+            <mat-option *ngFor="let model of filteredModelOptions | async" [value]="model">
+              {{model}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+  </div>
+
     
-  <!-- Origin -->
-    <mat-form-field appearance="fill" class="spaceBetween">
+    <!-- Origin -->
+    <mat-form-field appearance="fill" class="space-between">
       <mat-label>From</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <!-- Destination -->
-    <mat-form-field appearance="fill" class="spaceBetween">
-      <mat-label>To</mat-label>
       <input matInput>
     </mat-form-field>
     <br>
 
+    <!-- Destination -->
+    <mat-form-field appearance="fill" class="space-between">
+      <mat-label>To</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <br>
+      
     <!-- Carpooling: Yes or No -->
-    <mat-form-field appearance="fill" class="spaceBetween">
+    <mat-form-field appearance="fill" class="space-between">
       <mat-label>Are you carpooling?</mat-label>
       <mat-select>
         <mat-option value="Yes">Yes</mat-option>
         <mat-option value="No">No</mat-option>
       </mat-select>
     </mat-form-field>
-  </form>
 
-<!-- Add Button Here -->
-<section>  
-  <div>    
-    <button mat-raised-button color="primary">SUBMIT</button>    
-  </div>
-</section>
-
+  <!-- Add Button Here -->
+  <section>  
+    <div>    
+      <button mat-raised-button color="primary" (click)="fetchData()">SUBMIT</button>    
+    </div>
+  </section>
 </div>
 
 <!-- Output Stuff -->
-<div class="autoMargin">    
-    <app-graph></app-graph>
+<div class="graph">    
+    <app-graph [outputData]="parsedResponse"></app-graph>
 </div>
-
+</div>

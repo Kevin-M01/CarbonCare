@@ -15,7 +15,7 @@ text-align: center;
 padding: 10px;
 }
 .input {
-  float:left;
+  display: inline-block;
 }
 
 .even-split {
@@ -26,5 +26,5 @@ padding: 10px;
 }
 
 .graph {
-  float:left;
+  display: inline-block;
 }

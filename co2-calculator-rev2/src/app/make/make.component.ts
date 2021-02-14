@@ -9,7 +9,7 @@ export interface MakeGroup {
   names: string[];
 }
 
-export const _filter = (opt: string[], value: string): string[] => {
+export const _makeFilter = (opt: string[], value: string): string[] => {
   const filterValue = value.toLowerCase();
 
   return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
@@ -85,37 +85,28 @@ export class MakeComponent implements OnInit {
     names: ['Volkswagen', 'Volvo']
   }];
   // filter options when searching
-  filteredOptions: Observable<MakeGroup[]> | undefined;
+  filteredMakeOptions: Observable<MakeGroup[]> | undefined;
   
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     // filtering the options based on user input
-    this.filteredOptions = this.makeForm.get('makeGroup')!.valueChanges
+    this.filteredMakeOptions = this.makeForm.get('makeGroup')!.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filterGroup(value))
       );
-      this.setMakeValue("hi");
   }
 
   // actually filters the group name and returns the list of make
   private _filterGroup(value: string): MakeGroup[] {
     if (value) {
       return this.makesForm
-        .map(make => ({letter: make.letter, names: _filter(make.names, value)}))
+        .map(make => ({letter: make.letter, names: _makeFilter(make.names, value)}))
         .filter(make => make.names.length > 0);
     }
 
     return this.makesForm;
   }
 
-  public setMakeValue(make: string) {
-    this.carMake = make;
-    console.log(this.makesForm.values);
-  }
-
-  public emitMakeValue(): void {
-    console.log(this.carMake);
-  }
 }

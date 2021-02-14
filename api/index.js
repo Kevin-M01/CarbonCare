@@ -160,6 +160,10 @@ Fastify.register(mercurius, {
     resolvers
 })
 
+Fastify.register(require('fastify-cors'), { 
+    // put your options here
+  })
+
 Fastify.register(require('fastify-rate-limit'), {
     max: 100,
     timeWindow: '1 minute'

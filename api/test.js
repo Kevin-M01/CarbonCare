@@ -1,7 +1,7 @@
 const got = require('got')
 async function test () {
         let response = await got({
-                url: "http://127.0.0.1:5000/api/calculate",
+                url: "https://co2-calculator-api.herokuapp.com/api/calculate",
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

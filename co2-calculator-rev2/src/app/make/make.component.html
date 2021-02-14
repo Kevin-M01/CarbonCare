@@ -1,0 +1,22 @@
+<div class="input-section">
+    <form [formGroup] = "makeForm">
+  
+      <!-- Make -->
+      <mat-form-field appearance="fill" class="spaceBetween">
+        <mat-label>Make</mat-label>
+        <input type="text"
+               placeholder="Toyota"
+               aria-label="Make"
+               matInput
+               formControlName="makeGroup"
+               [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-optgroup *ngFor="let make of filteredOptions | async" [label]="make.letter">
+            <mat-option *ngFor="let name of make.names" [value]="name">
+              {{name}}
+              </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+</div>

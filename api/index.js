@@ -21,7 +21,7 @@ client.connect();
 const schema = `
     type CalculatedEmissions {
         name: String
-        score: Int 
+        value: Int 
     }
 
     type Query {
@@ -55,7 +55,6 @@ const resolvers = {
                 };
 
                 let response = await got(options);
-                console.log (response.body)
 
                 switch (response.statusCode) {
                     case 200:
@@ -69,10 +68,7 @@ const resolvers = {
                 // Error Handling
             }
             let tempEmissionData = null;
-            console.log (distance)
-            console.log (carPool)
-            console.log (carPool == false)
-            console.log (carPool == "false")
+
             if (carPool != "false") {
                 tempEmissionData = await client.query(`
                 WITH cte_1 AS (
@@ -171,7 +167,7 @@ Fastify.register(require('fastify-rate-limit'), {
 
 Fastify.post('/api/calculate', async function (req, reply) {
     try {
-        const query = `{ determineEmissions(address1: "${req.body.address1}" , address2: "${req.body.address2}", carMake: "${req.body.carMake}", carModel: "${req.body.carModel}", carPool: "${req.body.carPool}") {name, score} }`
+        const query = `{ determineEmissions(address1: "${req.body.address1}" , address2: "${req.body.address2}", carMake: "${req.body.carMake}", carModel: "${req.body.carModel}", carPool: "${req.body.carPool}") {name, value} }`
         return reply.graphql(query);
     } catch (e) {
         console.log(e)

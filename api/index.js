@@ -179,7 +179,4 @@ Fastify.get('/', function (req, reply) {
     })
 })
 
-Fastify.listen(process.env.PORT || 5000, (err, address) => {
-    if (err) throw err
-    Fastify.log.info(`server listening on ${address}`)
-})
+Fastify.listen(process.env.PORT, '0.0.0.0');

@@ -9,7 +9,7 @@ app.use('/static', express.static(path.join(__dirname, "dist", "co2-calculator-r
 app.use(express.static( './dist/co2-calculator-rev2'));
 
 app.get('/', function(req,res) {
-    res.sendFile(path.join(__dirname, "dist", "co2-calculator-rev2", "index.html"));
+    res.sendFile(path.join("dist", "co2-calculator-rev2", "index.html"));
 });
 
 app.get("/test", function (req, res){

@@ -166,7 +166,7 @@ Fastify.register(require('fastify-rate-limit'), {
 
 Fastify.post('/api/calculate', async function (req, reply) {
     try {
-        const query = `{ determineEmissions(address1: "${req.body.address1}" , address2: "${req.body.address2}", carMake: "${req.body.carMake}", carModel: "${req.body.carModel}", carPool: ${req.body.carPool}) {make, model, score} }`
+        const query = `{ determineEmissions(address1: "${req.body.address1}" , address2: "${req.body.address2}", carMake: "${req.body.carMake}", carModel: "${req.body.carModel}", carPool: "${req.body.carPool}") {make, model, score} }`
         return reply.graphql(query);
     } catch (e) {
         console.log(e)

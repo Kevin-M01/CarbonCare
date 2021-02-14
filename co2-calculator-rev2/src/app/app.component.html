@@ -1,11 +1,6 @@
-<div>
-  <h1>Carbon Calculator Pro</h1>
-</div>
-
-
 <div class="input-section">
   <form>
-    <app-make></app-make>
+    <app-make (makeEvent)="setMakeValue($event)"></app-make>
     <app-model></app-model>
     
   <!-- Origin -->
@@ -27,7 +22,20 @@
         <mat-option value="Yes">Yes</mat-option>
         <mat-option value="No">No</mat-option>
       </mat-select>
-  </mat-form-field>
-
+    </mat-form-field>
   </form>
+
+<!-- Add Button Here -->
+<section>  
+  <div>    
+    <button mat-raised-button color="primary">SUBMIT</button>    
+  </div>
+</section>
+
 </div>
+
+<!-- Output Stuff -->
+<div class="autoMargin">    
+    <app-graph></app-graph>
+</div>
+

@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AppComponent {
+  makeValue: string = "";
   
   constructor() {}
+
+  public setMakeValue(make: string): void {
+
+  }
 }

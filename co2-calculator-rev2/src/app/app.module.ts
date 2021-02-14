@@ -15,15 +15,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule  } from '@angular/material/input';
 
+// ngx Charts
+import { NgxChartsModule }from '@swimlane/ngx-charts';
+import { GraphComponent } from './graph/graph.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MakeComponent,
-    ModelComponent
+    ModelComponent,
+    GraphComponent
   ],
   imports: [
+    NgxChartsModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

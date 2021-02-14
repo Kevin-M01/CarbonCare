@@ -145,9 +145,8 @@ const resolvers = {
             let rowLength = tempEmissionData.rows.length;
             for (let x = 0; x < rowLength; x++) {
                 tempData.push({
-                    make: tempEmissionData.rows[x].make,
-                    model: tempEmissionData.rows[x].model,
-                    score: parseInt(tempEmissionData.rows[x].emission_in_grams)
+                    name: tempEmissionData.rows[x].make + " " + tempEmissionData.rows[x].model,
+                    value: parseInt(tempEmissionData.rows[x].emission_in_grams)
                 });
             }
             return tempData;
@@ -174,7 +173,10 @@ Fastify.post('/api/calculate', async function (req, reply) {
     }
 })
 
-Fastify.listen(3000, (err, address) => {
-    if (err) throw err
-    Fastify.log.info(`server listening on ${address}`)
+Fastify.get('/', function (req, reply) {
+    return reply.send({
+        hello: 'world'
+    })
 })
+
+Fastify.listen(process.env.PORT, '0.0.0.0');
